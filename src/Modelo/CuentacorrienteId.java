@@ -13,6 +13,7 @@ public class CuentacorrienteId  implements java.io.Serializable {
      private int idClientes;
 
     public CuentacorrienteId() {
+        // cambio para muestra
     }
 
     public CuentacorrienteId(int idVentas, int idClientes) {
