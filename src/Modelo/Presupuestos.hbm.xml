@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-ago-2016 20:56:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Presupuestos" table="presupuestos" catalog="proveeduria" optimistic-lock="version">
+        <composite-id name="id" class="Modelo.PresupuestosId">
+            <key-property name="idPresupuestos" type="int">
+                <column name="idPresupuestos" />
+            </key-property>
+            <key-property name="idClientes" type="int">
+                <column name="idClientes" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="clientes" class="Modelo.Clientes" update="false" insert="false" fetch="select">
+            <column name="idClientes" not-null="true" />
+        </many-to-one>
+        <property name="total" type="java.lang.Double">
+            <column name="total" precision="5" />
+        </property>
+        <property name="fechaHora" type="timestamp">
+            <column name="fechaHora" length="19" />
+        </property>
+        <property name="interes" type="java.lang.Integer">
+            <column name="interes" />
+        </property>
+        <property name="descuento" type="java.lang.Integer">
+            <column name="descuento" />
+        </property>
+        <set name="detallepresupuestoses" table="detallepresupuestos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPresupuestos" not-null="true" />
+                <column name="idClientes" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Detallepresupuestos" />
+        </set>
+        <set name="presupuestosTienenFormasdepagos" table="presupuestos_tienen_formasdepago" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idPresupuestos" not-null="true" />
+                <column name="idClientes" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.PresupuestosTienenFormasdepago" />
+        </set>
+    </class>
+</hibernate-mapping>

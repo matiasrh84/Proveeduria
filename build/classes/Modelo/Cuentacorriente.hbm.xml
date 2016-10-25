@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-ago-2016 20:56:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Cuentacorriente" table="cuentacorriente" catalog="proveeduria" optimistic-lock="version">
+        <composite-id name="id" class="Modelo.CuentacorrienteId">
+            <key-property name="idVentas" type="int">
+                <column name="idVentas" />
+            </key-property>
+            <key-property name="idClientes" type="int">
+                <column name="idClientes" />
+            </key-property>
+        </composite-id>
+        <one-to-one name="ventas" class="Modelo.Ventas" constrained="true"></one-to-one>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" />
+        </property>
+        <property name="total" type="java.lang.Double">
+            <column name="total" precision="5" />
+        </property>
+        <property name="estado" type="java.lang.Integer">
+            <column name="estado" />
+        </property>
+        <property name="formaDePago" type="string">
+            <column name="formaDePago" length="30" />
+        </property>
+    </class>
+</hibernate-mapping>

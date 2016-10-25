@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-ago-2016 20:56:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Facturacion" table="facturacion" catalog="proveeduria" optimistic-lock="version">
+        <composite-id name="id" class="Modelo.FacturacionId">
+            <key-property name="idFacturacion" type="int">
+                <column name="idFacturacion" />
+            </key-property>
+            <key-property name="idNotaDeCredito" type="int">
+                <column name="idNotaDeCredito" />
+            </key-property>
+            <key-property name="idVentas" type="int">
+                <column name="idVentas" />
+            </key-property>
+            <key-property name="idClientes" type="int">
+                <column name="idClientes" />
+            </key-property>
+            <key-property name="idNotaDeDebito" type="int">
+                <column name="idNotaDeDebito" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="notadecredito" class="Modelo.Notadecredito" update="false" insert="false" fetch="select">
+            <column name="idNotaDeCredito" not-null="true" />
+        </many-to-one>
+        <many-to-one name="notadedebito" class="Modelo.Notadedebito" update="false" insert="false" fetch="select">
+            <column name="idNotaDeDebito" not-null="true" />
+        </many-to-one>
+        <many-to-one name="ventas" class="Modelo.Ventas" update="false" insert="false" fetch="select">
+            <column name="idVentas" not-null="true" />
+            <column name="idClientes" not-null="true" />
+        </many-to-one>
+        <property name="cae" type="int">
+            <column name="CAE" not-null="true" />
+        </property>
+        <property name="factura" type="int">
+            <column name="factura" not-null="true" />
+        </property>
+        <property name="puntoDeVenta" type="int">
+            <column name="puntoDeVenta" not-null="true" />
+        </property>
+        <property name="fechaDeVencimiento" type="date">
+            <column name="fechaDeVencimiento" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

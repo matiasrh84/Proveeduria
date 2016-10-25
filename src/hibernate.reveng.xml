@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="proveeduria"/>
+  <table-filter match-name="detallepresupuestos"/>
+  <table-filter match-name="contactoproveedores"/>
+  <table-filter match-name="cuentacorriente"/>
+  <table-filter match-name="notadecredito"/>
+  <table-filter match-name="contacto"/>
+  <table-filter match-name="proveedores"/>
+  <table-filter match-name="ventas"/>
+  <table-filter match-name="stock"/>
+  <table-filter match-name="notadedebito"/>
+  <table-filter match-name="detalleventas"/>
+  <table-filter match-name="pedidos"/>
+  <table-filter match-name="presupuestos_tienen_formasdepago"/>
+  <table-filter match-name="formasdepago"/>
+  <table-filter match-name="lotes"/>
+  <table-filter match-name="presupuestos"/>
+  <table-filter match-name="facturacion"/>
+  <table-filter match-name="productos"/>
+  <table-filter match-name="deposito"/>
+  <table-filter match-name="clientes"/>
+  <table-filter match-name="ventas_tienen_formasdepago"/>
+  <table-filter match-name="contactoclientes"/>
+</hibernate-reverse-engineering>

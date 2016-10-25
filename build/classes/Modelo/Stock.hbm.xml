@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-ago-2016 20:56:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Stock" table="stock" catalog="proveeduria" optimistic-lock="version">
+        <composite-id name="id" class="Modelo.StockId">
+            <key-property name="idStock" type="int">
+                <column name="idStock" />
+            </key-property>
+            <key-property name="idProductos" type="int">
+                <column name="idProductos" />
+            </key-property>
+            <key-property name="idLotes" type="int">
+                <column name="idLotes" />
+            </key-property>
+            <key-property name="idDepositos" type="int">
+                <column name="idDepositos" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="deposito" class="Modelo.Deposito" update="false" insert="false" fetch="select">
+            <column name="idDepositos" not-null="true" />
+        </many-to-one>
+        <many-to-one name="lotes" class="Modelo.Lotes" update="false" insert="false" fetch="select">
+            <column name="idLotes" not-null="true" />
+        </many-to-one>
+        <many-to-one name="productos" class="Modelo.Productos" update="false" insert="false" fetch="select">
+            <column name="idProductos" not-null="true" />
+        </many-to-one>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true" />
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" />
+        </property>
+        <property name="precioCompra" type="java.lang.Double">
+            <column name="precioCompra" precision="4" />
+        </property>
+        <property name="precioVenta" type="java.lang.Double">
+            <column name="precioVenta" precision="4" />
+        </property>
+    </class>
+</hibernate-mapping>

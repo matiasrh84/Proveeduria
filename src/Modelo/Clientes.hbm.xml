@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-ago-2016 20:56:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Clientes" table="clientes" catalog="proveeduria" optimistic-lock="version">
+        <id name="idClientes" type="java.lang.Integer">
+            <column name="idClientes" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="45" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="45" />
+        </property>
+        <property name="observacion" type="string">
+            <column name="observacion" />
+        </property>
+        <property name="margen" type="java.lang.Integer">
+            <column name="margen" />
+        </property>
+        <property name="matricula" type="java.lang.Integer">
+            <column name="matricula" />
+        </property>
+        <property name="tipoIva" type="string">
+            <column name="tipoIVA" length="25" />
+        </property>
+        <set name="ventases" table="ventas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idClientes" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Ventas" />
+        </set>
+        <set name="presupuestoses" table="presupuestos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idClientes" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Presupuestos" />
+        </set>
+        <set name="contactos" table="contactoclientes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idClientes" not-null="true" />
+            </key>
+            <many-to-many entity-name="Modelo.Contacto">
+                <column name="idContacto" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

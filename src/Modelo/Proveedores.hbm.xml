@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-ago-2016 20:56:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Proveedores" table="proveedores" catalog="proveeduria" optimistic-lock="version">
+        <id name="idProveedores" type="int">
+            <column name="idProveedores" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" />
+        </property>
+        <property name="nombreRepresentante" type="string">
+            <column name="nombreRepresentante" length="45" />
+        </property>
+        <property name="apellidoRepresentante" type="string">
+            <column name="apellidoRepresentante" length="45" />
+        </property>
+        <set name="pedidoses" table="pedidos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idProveedores" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Pedidos" />
+        </set>
+        <set name="contactos" table="contactoproveedores" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idProveedores" not-null="true" />
+            </key>
+            <many-to-many entity-name="Modelo.Contacto">
+                <column name="idContacto" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

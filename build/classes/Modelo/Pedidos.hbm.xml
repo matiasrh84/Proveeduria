@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-ago-2016 20:56:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Pedidos" table="pedidos" catalog="proveeduria" optimistic-lock="version">
+        <composite-id name="id" class="Modelo.PedidosId">
+            <key-property name="idProveedores" type="int">
+                <column name="idProveedores" />
+            </key-property>
+            <key-property name="idProductos" type="int">
+                <column name="idProductos" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="productos" class="Modelo.Productos" update="false" insert="false" fetch="select">
+            <column name="idProductos" not-null="true" />
+        </many-to-one>
+        <many-to-one name="proveedores" class="Modelo.Proveedores" update="false" insert="false" fetch="select">
+            <column name="idProveedores" not-null="true" />
+        </many-to-one>
+        <property name="cantidad" type="java.lang.Integer">
+            <column name="cantidad" />
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

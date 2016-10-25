@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-ago-2016 20:56:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.VentasTienenFormasdepago" table="ventas_tienen_formasdepago" catalog="proveeduria" optimistic-lock="version">
+        <composite-id name="id" class="Modelo.VentasTienenFormasdepagoId">
+            <key-property name="ventasIdVentas" type="int">
+                <column name="Ventas_idVentas" />
+            </key-property>
+            <key-property name="ventasIdClientes" type="int">
+                <column name="Ventas_idClientes" />
+            </key-property>
+            <key-property name="formasDePagoIdFormasDePago" type="int">
+                <column name="FormasDePago_idFormasDePago" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="formasdepago" class="Modelo.Formasdepago" update="false" insert="false" fetch="select">
+            <column name="FormasDePago_idFormasDePago" not-null="true" />
+        </many-to-one>
+        <many-to-one name="ventas" class="Modelo.Ventas" update="false" insert="false" fetch="select">
+            <column name="Ventas_idVentas" not-null="true" />
+            <column name="Ventas_idClientes" not-null="true" />
+        </many-to-one>
+        <property name="obs" type="string">
+            <column name="obs" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

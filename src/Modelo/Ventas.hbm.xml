@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-ago-2016 20:56:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelo.Ventas" table="ventas" catalog="proveeduria" optimistic-lock="version">
+        <composite-id name="id" class="Modelo.VentasId">
+            <key-property name="idVentas" type="int">
+                <column name="idVentas" />
+            </key-property>
+            <key-property name="idClientes" type="int">
+                <column name="idClientes" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="clientes" class="Modelo.Clientes" update="false" insert="false" fetch="select">
+            <column name="idClientes" not-null="true" />
+        </many-to-one>
+        <property name="total" type="java.lang.Double">
+            <column name="total" precision="9" />
+        </property>
+        <property name="fechaHora" type="timestamp">
+            <column name="fechaHora" length="19" />
+        </property>
+        <property name="interes" type="java.lang.Integer">
+            <column name="interes" />
+        </property>
+        <property name="descuento" type="java.lang.Integer">
+            <column name="descuento" />
+        </property>
+        <property name="ivatotal" type="java.lang.Double">
+            <column name="IVAtotal" precision="7" />
+        </property>
+        <property name="tipoDeServicio" type="string">
+            <column name="tipoDeServicio" length="150" />
+        </property>
+        <property name="fechaDesde" type="date">
+            <column name="fechaDesde" length="10" />
+        </property>
+        <property name="fechaHasta" type="date">
+            <column name="fechaHasta" length="10" />
+        </property>
+        <property name="rentas" type="java.lang.Double">
+            <column name="rentas" precision="22" scale="0" />
+        </property>
+        <set name="detalleventases" table="detalleventas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idVentas" not-null="true" />
+                <column name="idClientes" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Detalleventas" />
+        </set>
+        <set name="ventasTienenFormasdepagos" table="ventas_tienen_formasdepago" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Ventas_idVentas" not-null="true" />
+                <column name="Ventas_idClientes" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.VentasTienenFormasdepago" />
+        </set>
+        <one-to-one name="cuentacorriente" class="Modelo.Cuentacorriente"></one-to-one>
+        <set name="facturacions" table="facturacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idVentas" not-null="true" />
+                <column name="idClientes" not-null="true" />
+            </key>
+            <one-to-many class="Modelo.Facturacion" />
+        </set>
+    </class>
+</hibernate-mapping>
